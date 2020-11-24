@@ -12,5 +12,4 @@ RUN npm run-script build
 EXPOSE $PORT
 
 # Execute application
-CMD [ "ls"]
 CMD [ "npm", "run", "serve"]
