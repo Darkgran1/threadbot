@@ -2,13 +2,13 @@ FROM node:12-slim
 
 # Create app directory
 WORKDIR /usr/src/app
-COPY pack*.json ./
+COPY . .
 
 # Build application
 RUN npm install
 RUN npm run-script build
 
-COPY . .
+#COPY . .
 EXPOSE $PORT
 
 # Execute application
