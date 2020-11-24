@@ -1,8 +1,8 @@
-FROM node
+FROM node:12-slim
 
 # Create app directory
 WORKDIR /usr/src/app
-COPY pack*.json ./
+COPY pack*.json .
 
 RUN npm install
 COPY . .
