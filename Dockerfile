@@ -8,8 +8,7 @@ COPY . .
 RUN npm install
 RUN npm run-script build
 
-#COPY . .
 EXPOSE $PORT
 
 # Execute application
-CMD [ "npm", "run", "serve"]
+CMD [ "npm", "start"]
