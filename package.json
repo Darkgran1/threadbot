@@ -37,7 +37,9 @@
     "watch-ts": "tsc -w"
   },
   "dependencies": {
-    "@slack/client": "^4.8.0",
+    "@slack/rtm-api": "^5.0.5",
+    "@slack/web-api": "^5.14.0",
+    "@slack/webhook": "^5.0.3",
     "axios": "^0.18.0",
     "body-parser": "^1.18.3",
     "micro": "^9.3.3",

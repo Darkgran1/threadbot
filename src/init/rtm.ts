@@ -1,4 +1,4 @@
-import { RTMClient } from '@slack/client'
+import { RTMClient } from '@slack/rtm-api'
 
 import { Team } from '../models/team'
 
