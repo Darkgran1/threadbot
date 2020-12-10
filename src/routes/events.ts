@@ -34,6 +34,8 @@ export default [
     switch (event.type) {
       case 'message': {
         const userID = (event.comment && event.comment.user) || event.user
+        const channelID = event.channel
+
         if (
           event.subtype === 'file_share' ||
           event.subtype === 'file_comment' ||
@@ -57,12 +59,13 @@ export default [
           })
 
           if (isFlooding) {
-            const result = await web.chat.postMessage({
-              channel: userID,
+            const result = await web.chat.postEphemeral({
+              channel: channelID,
               text:
                 'I detected multiple messages in a row in a short time. \n' +
                 'Please edit them to use a single message instead. 💙 \n' +
                 'This way, people can easily reply to the right one using threads.',
+              user: userID,
             })
             console.log(`Successfully send message ${result.ts} in conversation ${userID}`)
           }
