@@ -4,7 +4,6 @@ import { post } from 'microrouter'
 import * as flood from '../features/flood'
 import { getParsedBody } from '../helpers'
 import web, { slackClientVerificationToken } from '../init/web'
-import { Team } from '../models/team'
 
 export default [
   post('/events', async (req, res) => {
@@ -58,22 +57,14 @@ export default [
           })
 
           if (isFlooding) {
-            const team = await Team.findById(teamID)
-
-            if (!(team && (team.bot || {}).access_token)) {
-              send(res, 400, `Failed to get the access token for the team ${teamID}.`)
-              return
-            }
-
-            await web.chat.postMessage({
-              as_user: true,
+            const result = await web.chat.postMessage({
               channel: userID,
               text:
                 'I detected multiple messages in a row in a short time. \n' +
                 'Please edit them to use a single message instead. 💙 \n' +
                 'This way, people can easily reply to the right one using threads.',
-              token: team!.bot.access_token,
             })
+            console.log(`Successfully send message ${result.ts} in conversation ${userID}`)
           }
 
           send(res, 200)

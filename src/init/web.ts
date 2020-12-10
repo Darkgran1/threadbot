@@ -9,6 +9,6 @@ if (!slackClientSecret) throw new Error('[ENV] Missing environment variable: SLA
 if (!slackClientVerificationToken)
   throw new Error('[ENV] Missing environment variable: SLACK_CLIENT_VERIFICATION_TOKEN')
 
-const web = new WebClient()
+const web = new WebClient(slackClientVerificationToken)
 
 export default web
