@@ -31,6 +31,11 @@ export default [
       return
     }
 
+    if (event.botprofile) {
+      send(res, 200, challenge)
+      return
+    }
+
     switch (event.type) {
       case 'message': {
         const userID = (event.comment && event.comment.user) || event.user
