@@ -5,7 +5,4 @@ if (!mongodbURI) throw new Error('[ENV] Missing environment variable: MONGODB_UR
 
 mongoose.connect(mongodbURI, { useNewUrlParser: true })
 
-const db = mongoose.connection
-db.on('error', console.error.bind(console, 'Connection error:'))
-
 export default mongoose

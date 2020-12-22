@@ -2,6 +2,7 @@ import { WebAPICallResult } from '@slack/web-api'
 import { send } from 'micro'
 import { get } from 'microrouter'
 
+import { initAllFeaturesForTeam } from '../features'
 import web, { slackClientId, slackClientSecret } from '../init/web'
 import { Team } from '../models/team'
 
@@ -21,7 +22,7 @@ export default [
 
     let response
     try {
-      response = await web.oauth.v2.access({
+      response = await web.oauth.access({
         client_id: slackClientId,
         client_secret: slackClientSecret,
         code,
@@ -55,8 +56,7 @@ export default [
         },
         { new: true, upsert: true },
       )
-      // initAllFeaturesForTeam(team.toObject())
-      team.save()
+      initAllFeaturesForTeam(team.toObject())
     } catch (error) {
       console.error(error)
       send(res, 500, { ok: false, message: error.message })
